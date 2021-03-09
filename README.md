@@ -21,12 +21,7 @@ pip install -r requirements.txt
  `from gen_entity_link import disambiguate_detect`
  
 ### Scripts
-請先至 https://reurl.cc/qmn6d3 下載資料與訓練好的模型，放入創建的 data_model 資料夾
-
-[projectname]/
-├── main.py <\br>
-└── data_model <-- here 
-
+請先至 https://reurl.cc/qmn6d3 下載資料與訓練好的模型，並放入 data_model 資料夾（在此 project 底下創建新資料夾即可）
  - link_prob_dict.json
  - commonness_dict.json
  - relatedness_dict.json
