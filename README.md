@@ -24,8 +24,8 @@ pip install -r requirements.txt
 請先至 https://reurl.cc/qmn6d3 下載資料與訓練好的模型，放入創建的 data_model 資料夾
 
 [projectname]/
-├── main.py
-└── data_model <-- here
+├── main.py <\br>
+└── data_model <-- here 
 
  - link_prob_dict.json
  - commonness_dict.json
