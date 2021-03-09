@@ -37,9 +37,7 @@ pip install -r requirements.txt
    (features: link probability, first occurrence, last occurrence, spread)
  - train_detect_link_model.py: 訓練 model 並儲存。
  
-在 ./train_data 底下提供幾個小資料集以供訓練，亦可自行選用 wiki dump 資料進行訓練。
-因資料集龐雜，可能需適時調整程式以處理特別案例。
-
+可自行使用 wiki dump 資料進行訓練。
 訓練好的 model 會儲存在 data_model 資料夾中，以供調用。
 
 ### Main Modules
