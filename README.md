@@ -3,7 +3,7 @@
 </h1>
 
 ### Learning to Link with Wikipedia
-本 repo 旨在復現此論文，並應用在 NTHU NLPlab Linggle Booster 系統上。其中有些地方有進行修正，不完全依照本論文作法，但亦獲得不錯效果，附上論文 pdf 供參考。
+本 repo 旨在復現此論文，其中有些地方有進行修正，不完全依照本論文作法，但亦獲得不錯效果，附上論文 pdf 供參考。
 
 ### Prototype
 在此提供一個簡單的 prototype 以供檢視效果。
