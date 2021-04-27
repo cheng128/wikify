@@ -7,7 +7,7 @@
 
 ### Prototype
 在此提供一個簡單的 prototype 以供檢視效果。
-http://140.114.89.223:8502/ 
+http://140.114.89.223:8501/ 
 
 ### Installation
 可自行考慮是否要在 virtual environment 下執行安裝。 
