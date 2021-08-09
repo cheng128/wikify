@@ -1,0 +1,11 @@
+structure.txt
+./data_model/commonness_dict.json
+./data_model/link_prob.dict.json
+./data_model/relatedness_dict.json
+./train_data/articles_btn_200_300_all.txt
+./train_data/anchors_under_100_all_sorted.txt
+./train_data/anchors_btwn_10_20_all.txt
+./train_data/more_links_restrict.txt
+.ipynb_checkpoints
+./detect_link_model/.ipynb_checkpoints
+
