@@ -1,10 +1,21 @@
 import re
+import requests
 from nltk import ngrams
+from bs4 import BeautifulSoup
 from disambi_detect import gen_need_disambi, word_disambiguation, bi_tri_grams
 
 def remove(documents):
     remove_chars = '[!()*+,./:;<=>?@，。、…【】《》^_`{|}~"-]+'
     return re.sub(remove_chars, ' ', documents)
+
+def get_title(target_url):
+    r = requests.get(target_url)
+    if r.status_code == requests.codes.ok:
+        soup = BeautifulSoup(r.text, 'lxml')
+        title = soup.select('h1.firstHeading')[0].text
+    else:
+        title = ""
+    return title
 
 def get_return_info(split_text, ngram_list):  
     words_href, words_index, need_dis = gen_need_disambi(split_text, ngram_list) 
@@ -14,6 +25,7 @@ def get_return_info(split_text, ngram_list):
         temp = {}
         temp['entity'] = anchor
         temp['url'] = 'https://en.wikipedia.org/wiki/' + words_href[anchor]
+        temp['title'] = get_title(temp['url'])
         temp['start'] = words_index[anchor]
         temp['end'] = temp['start']+len(anchor.split())-1
         return_list.append(temp)
