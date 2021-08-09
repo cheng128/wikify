@@ -10,9 +10,12 @@ from math import log
 from copy import deepcopy
 import pandas as pd
 import sys
+import logging
 sys.path.append("..")
-from pre_tools import load_dict, remove, remove_bt_a, get_text_split_anchors,
+from pre_tools import load_dict, remove, remove_bt_a, get_text_split_anchors
  
+logging.basicConfig(level=logging.INFO)
+
 link_prob, commonness, relatedness = load_dict()
 
 train_file = "../train_data/more_links_restrict.txt"
@@ -43,7 +46,8 @@ def location_spread(page_list, search_word):
 
 
 def modify_clean_text_split(remove_text, tag_split, linked_list):
-    '''replace content without punctuation marks with anchors so that anchor like 'H. N. Abrams' can be found in text split list
+    '''replace content without punctuation marks with anchors so that anchor 
+    like 'H. N. Abrams' can be found in text split list
     '''
     href_index = []
     for num, piece in enumerate(tag_split):
@@ -80,22 +84,24 @@ def get_detect_link_feature(input_article):
     return temp_features
     
 def save_feature(file, start, end):
+    
+    column_index = ["anchors", "link_prob", "frequency", "first", "last", "spread", "label"]
     data = []
     count = 1
     for line in file.readlines()[start:end]:
-        if count%10==0:
-            print(count)
+        if count%200==0:
+            logging.info(f"{count}")
         count+=1
         data.extend(get_detect_link_feature(line))
-    df = pd.DataFrame(training_data, columns=column_index)
+    df = pd.DataFrame(data, columns=column_index)
     df.drop_duplicates()
     df.dropna()
     data_write = df.to_json(orient='split')
     return data_write
 
 def main():
+    
     with open(train_file, 'r') as f:
-        column_index = ["anchors", "link_prob", "frequency", "first", "last", "spread", "label"]
         training_data_write = save_feature(f, 0, 105000)
         testing_data_write = save_feature(f, 105000, 140000)
     

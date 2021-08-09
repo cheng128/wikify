@@ -5,12 +5,18 @@ from nltk import ngrams
 from copy import deepcopy
 from bs4 import BeautifulSoup
 import os
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def load_dict():
+    logging.info("load link probability data...")
     dict_link_prbability = json.load(open(os.path.join(BASE_DIR,'data_model/link_prob_dict.json')))
+    logging.info("load commonness data...")
     dict_commonness = json.load(open(os.path.join(BASE_DIR, 'data_model/commonness_dict.json')))
+    logging.info("load relatedness data...")
     dict_relatedness = json.load(open(os.path.join(BASE_DIR,'data_model/relatedness_dict.json')))
     return dict_link_prbability, dict_commonness, dict_relatedness
 

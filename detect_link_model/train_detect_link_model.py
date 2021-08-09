@@ -9,6 +9,7 @@ training_file = './enwiki_detect_link_training_data.json'
 testing_file = './enwiki_detect_link_testing_data.json'
 
 xgbc = XGBClassifier(use_label_encoder=False)
+
 def train_detect_link_model():
     train_df = pd.read_json(training_file, orient='split')
     X_train = train_df[['link_prob', 'frequency', 'first', 'last', 'spread']]
@@ -30,7 +31,5 @@ predict = trained_model.predict(X_test)
 
 print('detect link')
 print('score:', xgbc.score(X_test, y_test))
-print('f1:', f1_score(y_test, predict)) #獲得F1值
-print('recall:',recall_score(y_test, predict)) #獲得召回率
-
-
+print('f1:', f1_score(y_test, predict))
+print('recall:',recall_score(y_test, predict))
