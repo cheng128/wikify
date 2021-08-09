@@ -28,8 +28,3 @@ X_test = test_df[['link_prob', 'frequency', 'first', 'last', 'spread']]
 y_test = test_df['label']
 
 predict = trained_model.predict(X_test)
-
-print('detect link')
-print('score:', xgbc.score(X_test, y_test))
-print('f1:', f1_score(y_test, predict))
-print('recall:',recall_score(y_test, predict))
