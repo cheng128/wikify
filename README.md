@@ -3,19 +3,11 @@
 </h1>
 
 ### Learning to Link with Wikipedia
-<<<<<<< HEAD
 本 repo 旨在復現此論文，並應用在 NTHU NLPlab Linggle Booster 系統上。其中有些地方有進行修正，不完全依照本論文作法，但亦獲得不錯效果，附上論文 pdf 供參考。
 
 ### Prototype
 在此提供一個簡單的 prototype 檢視效果。
 http://140.114.89.223:8502/ 
-=======
-本 repo 旨在復現此論文，其中有些地方有進行修正，不完全依照本論文作法，但亦獲得不錯效果，附上論文 pdf 供參考。
-
-### Prototype
-在此提供一個簡單的 prototype 以供檢視效果。
-http://140.114.89.223:8501/ 
->>>>>>> f9e2caf96cd7668923406282d4754e2be3085f3d
 
 ### Installation
 可自行考慮是否要在 virtual environment 下執行安裝。 
