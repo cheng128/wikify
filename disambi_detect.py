@@ -33,7 +33,8 @@ def location_spread(page_list, search_word):
 def cal_relat(A, B):
     """ Utilize two href to calculate relatedness between two words.
     formula: relatedness(a, b) = (log(max(|A|,|B|))-log(|A&B|))/log(W)-log(min(|A|, |B|))
-    Where a and b are the two articles of interest, A and B are the sets of all articles that link to a and b respectively, and W is set of all articles in Wikipedia.
+    Where a and b are the two articles of interest, A and B are the sets of all articles 
+    that link to a and b respectively, and W is set of all articles in Wikipedia.
     """
     all_article_num = 61784326
     log_W = log(all_article_num)
@@ -46,7 +47,8 @@ def cal_relat(A, B):
     return ((log(max(article_count))-intersection_log) / (log_W-log(min(article_count))))
 
 def detect_link_predict(target_list, words_list):
-    """ Get features for detect link(link probability, frequency, first occurrence, last occurrence, spread) and predict whether a word need to be linked.
+    """ Get features for detect link(link probability, frequency, first occurrence, 
+    last occurrence, spread) and predict whether a word need to be linked.
     """
     detect_data = []
     first_index_list = []
@@ -87,7 +89,8 @@ def gen_need_disambi(text_split, text_ngrams):
 
 
 def word_disambiguation(no_need_href, need_list):
-    """ This function will use words that don't need to do disambiguation to calculate relatedness and then use context quality, commonness of that sense to disambiguate others.
+    """ This function will use words that don't need to do disambiguation to calculate 
+    relatedness and then use context quality, commonness of that sense to disambiguate others.
     """
     anchor_href = {}
     for ambi in need_list:

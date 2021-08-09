@@ -1,10 +1,10 @@
-import json
-from bs4 import BeautifulSoup
-import pandas as pd
 import sys
+import json
+import pandas as pd
 from math import log
-sys.path.append('..')
+from bs4 import BeautifulSoup
 from pre_tools import load_dict
+sys.path.append('..')
 
 link_prob, commonness, relatedness = load_dict()
 
@@ -14,7 +14,8 @@ output_file_name = 'enwiki_disambiguation_training_data.json'
 def cal_relate(A, B):
     """ Utilize two href to calculate relatedness between two words.
     formula: relatedness(a, b) = (log(max(|A|,|B|))-log(|A&B|))/log(W)-log(min(|A|, |B|))
-    Where a and b are the two articles of interest, A and B are the sets of all articles that link to a and b respectively, and W is set of all articles in Wikipedia.
+    Where a and b are the two articles of interest, A and B are the sets of all articles 
+    that link to a and b respectively, and W is set of all articles in Wikipedia.
     """
     all_article_num = 61784326
     log_W = log(all_article_num)
@@ -38,7 +39,8 @@ def get_no_need_dis(json_text):
     need = [anhr for anhr in anchors_href if anhr not in no_need]
     
     if not no_need:
-        common_href_word = {commonness[word[0]][0][1]: [commonness[word[0][0]], word] for word in need}
+        common_href_word = {commonness[word[0]][0][1]: [commonness[word[0][0]], word]
+                            for word in need}
         max_common = max(common_href_word.keys()) 
         no_need = [common_href_word[max_common][1]]
         need.remove(common_href_word[max_common][1])
@@ -50,7 +52,8 @@ def get_features(pages, no_need, need, target_ac, target_href):
         label = 0
         sense_commonness = page[1]/100
         temp_relatedness = [cal_relate(page[0], no_dis[1])  for no_dis in no_need]
-        temp_weight = [(cal_relate(page[0], anchor[1])+link_prob[anchor[0]])/2 for anchor in no_need]
+        temp_weight = [(cal_relate(page[0], anchor[1])+link_prob[anchor[0]])/2
+                       for anchor in no_need]
         weight_relate = [w*r for w, r in zip(temp_weight, temp_relatedness)]
         sense_relatedness = sum(weight_relate)/sum(temp_weight)
         text_quality = sum(temp_weight)
@@ -70,8 +73,9 @@ def main():
     with open(train_file, 'r') as f:
         features = []
         count = 1
-        for line in f.readlines()[:1000]:
-            print(count)
+        for line in f.readlines():
+            if count%100==0:
+                print(count)
             count += 1
             features.extend(get_train_feature(line))
             
@@ -83,7 +87,6 @@ def main():
         
     with open(output_file_name, 'w') as g:
         g.write(training_data_write)
-    print('done')
 
 
 if __name__ == "__main__":
