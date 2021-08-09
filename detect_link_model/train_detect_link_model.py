@@ -2,8 +2,6 @@ import joblib
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
-from sklearn.metrics import f1_score
-from sklearn.metrics import recall_score
 
 training_file = './enwiki_detect_link_training_data.json'
 testing_file = './enwiki_detect_link_testing_data.json'
