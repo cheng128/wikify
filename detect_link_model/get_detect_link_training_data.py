@@ -97,7 +97,7 @@ def main():
     with open(train_file, 'r') as f:
         column_index = ["anchors", "link_prob", "frequency", "first", "last", "spread", "label"]
         training_data_write = save_feature(f, 0, 105000)
-        training_data_write = save_feature(f, 105000, 140000)
+        testing_data_write = save_feature(f, 105000, 140000)
     
     with open(train_output_name, 'w') as g:
         g.write(training_data_write)
