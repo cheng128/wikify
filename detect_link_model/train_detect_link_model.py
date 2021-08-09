@@ -12,10 +12,14 @@ xgbc = XGBClassifier(use_label_encoder=False)
 
 def train_detect_link_model():
     train_df = pd.read_json(training_file, orient='split')
-    X_train = train_df[['link_prob', 'frequency', 'first', 'last', 'spread']]
-    y_train = train_df['label']
-#     X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.25, random_state = 33)
-    model = xgbc.fit(X_train, y_train)
+    X = train_df[['link_prob', 'frequency', 'first', 'last', 'spread']]
+    y = train_df['label']
+    X_train, X_val, y_train, y_val = train_test_split(X,y, test_size = 0.2, random_state = 33)
+    model = xgbc.fit(X_train, y_train,
+                     eval_set=[(X_train, y_train), (X_val, y_val)],
+                     eval_metric='logloss',
+                     verbose=True)
+    evals_result = xgbc.evals_result()
     return model
 
 trained_model = train_detect_link_model()    
